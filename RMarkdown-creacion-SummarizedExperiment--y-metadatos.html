@@ -379,8 +379,148 @@ head (human_cachexia)</code></pre>
 ## #   Acetone &lt;chr&gt;, Adipate &lt;chr&gt;, Alanine &lt;chr&gt;, Asparagine &lt;chr&gt;,
 ## #   Betaine &lt;chr&gt;, Carnitine &lt;chr&gt;, Citrate &lt;chr&gt;, Creatine &lt;chr&gt;,
 ## #   Creatinine &lt;chr&gt;, Dimethylamine &lt;chr&gt;, Ethanolamine &lt;chr&gt;, Formate &lt;chr&gt;, …</code></pre>
-<p>Estudiamos el dataset seleccionado, comprobando aunque ya nos lo han
-indicado que no hay missing values.</p>
+<pre class="r"><code>str(human_cachexia)</code></pre>
+<pre><code>## tibble [77 × 65] (S3: tbl_df/tbl/data.frame)
+##  $ Patient ID                : chr [1:77] &quot;PIF_178&quot; &quot;PIF_087&quot; &quot;PIF_090&quot; &quot;NETL_005_V1&quot; ...
+##  $ Muscle loss               : chr [1:77] &quot;cachexic&quot; &quot;cachexic&quot; &quot;cachexic&quot; &quot;cachexic&quot; ...
+##  $ 1,6-Anhydro-beta-D-glucose: chr [1:77] &quot;40.85&quot; &quot;62.18&quot; &quot;270.43&quot; &quot;154.47&quot; ...
+##  $ 1-Methylnicotinamide      : chr [1:77] &quot;65.37&quot; &quot;340.36&quot; &quot;64.72&quot; &quot;52.98&quot; ...
+##  $ 2-Aminobutyrate           : chr [1:77] &quot;18.73&quot; &quot;24.29&quot; &quot;12.18&quot; &quot;172.43&quot; ...
+##  $ 2-Hydroxyisobutyrate      : chr [1:77] &quot;26.05&quot; &quot;41.68&quot; &quot;65.37&quot; &quot;74.44&quot; ...
+##  $ 2-Oxoglutarate            : chr [1:77] &quot;71.52&quot; &quot;67.36&quot; &quot;23.81&quot; &quot;1199.91&quot; ...
+##  $ 3-Aminoisobutyrate        : chr [1:77] &quot;1480.3&quot; &quot;116.75&quot; &quot;14.3&quot; &quot;555.57&quot; ...
+##  $ 3-Hydroxybutyrate         : chr [1:77] &quot;56.83&quot; &quot;43.82&quot; &quot;5.64&quot; &quot;175.91&quot; ...
+##  $ 3-Hydroxyisovalerate      : chr [1:77] &quot;10.07&quot; &quot;79.84&quot; &quot;23.34&quot; &quot;25.03&quot; ...
+##  $ 3-Indoxylsulfate          : chr [1:77] &quot;566.8&quot; &quot;368.71&quot; &quot;665.14&quot; &quot;411.58&quot; ...
+##  $ 4-Hydroxyphenylacetate    : chr [1:77] &quot;120.3&quot; &quot;432.68&quot; &quot;292.95&quot; &quot;214.86&quot; ...
+##  $ Acetate                   : chr [1:77] &quot;126.47&quot; &quot;212.72&quot; &quot;314.19&quot; &quot;37.34&quot; ...
+##  $ Acetone                   : chr [1:77] &quot;9.49&quot; &quot;11.82&quot; &quot;4.44&quot; &quot;206.44&quot; ...
+##  $ Adipate                   : chr [1:77] &quot;38.09&quot; &quot;327.01&quot; &quot;131.63&quot; &quot;144.03&quot; ...
+##  $ Alanine                   : chr [1:77] &quot;314.19&quot; &quot;871.31&quot; &quot;464.05&quot; &quot;589.93&quot; ...
+##  $ Asparagine                : chr [1:77] &quot;159.17&quot; &quot;157.59&quot; &quot;89.12&quot; &quot;273.14&quot; ...
+##  $ Betaine                   : chr [1:77] &quot;109.95&quot; &quot;244.69&quot; &quot;116.75&quot; &quot;278.66&quot; ...
+##  $ Carnitine                 : chr [1:77] &quot;265.07&quot; &quot;120.3&quot; &quot;25.03&quot; &quot;200.34&quot; ...
+##  $ Citrate                   : chr [1:77] &quot;3714.5&quot; &quot;2617.57&quot; &quot;862.64&quot; &quot;13629.61&quot; ...
+##  $ Creatine                  : chr [1:77] &quot;196.37&quot; &quot;212.72&quot; &quot;221.41&quot; &quot;85.63&quot; ...
+##  $ Creatinine                : chr [1:77] &quot;16481.6&quot; &quot;15835.35&quot; &quot;24587.66&quot; &quot;20952.22&quot; ...
+##  $ Dimethylamine             : chr [1:77] &quot;632.7&quot; &quot;607.89&quot; &quot;735.1&quot; &quot;1064.22&quot; ...
+##  $ Ethanolamine              : chr [1:77] &quot;645.48&quot; &quot;487.85&quot; &quot;407.48&quot; &quot;820.57&quot; ...
+##  $ Formate                   : chr [1:77] &quot;441.42&quot; &quot;252.14&quot; &quot;249.64&quot; &quot;468.72&quot; ...
+##  $ Fucose                    : chr [1:77] &quot;336.97&quot; &quot;198.34&quot; &quot;186.79&quot; &quot;407.48&quot; ...
+##  $ Fumarate                  : chr [1:77] &quot;7.69&quot; &quot;18.92&quot; &quot;7.1&quot; &quot;96.54&quot; ...
+##  $ Glucose                   : chr [1:77] &quot;395.44&quot; &quot;8690.62&quot; &quot;1352.89&quot; &quot;862.64&quot; ...
+##  $ Glutamine                 : chr [1:77] &quot;871.31&quot; &quot;601.85&quot; &quot;301.87&quot; &quot;1685.81&quot; ...
+##  $ Glycine                   : chr [1:77] &quot;2038.56&quot; &quot;1107.65&quot; &quot;620.17&quot; &quot;5064.45&quot; ...
+##  $ Glycolate                 : chr [1:77] &quot;685.4&quot; &quot;651.97&quot; &quot;141.17&quot; &quot;70.81&quot; ...
+##  $ Guanidoacetate            : chr [1:77] &quot;154.47&quot; &quot;109.95&quot; &quot;183.09&quot; &quot;102.51&quot; ...
+##  $ Hippurate                 : chr [1:77] &quot;4582.5&quot; &quot;1737.15&quot; &quot;4315.64&quot; &quot;757.48&quot; ...
+##  $ Histidine                 : chr [1:77] &quot;925.19&quot; &quot;845.56&quot; &quot;284.29&quot; &quot;1043.15&quot; ...
+##  $ Hypoxanthine              : chr [1:77] &quot;97.51&quot; &quot;82.27&quot; &quot;114.43&quot; &quot;223.63&quot; ...
+##  $ Isoleucine                : chr [1:77] &quot;5.58&quot; &quot;8.17&quot; &quot;9.3&quot; &quot;37.71&quot; ...
+##  $ Lactate                   : chr [1:77] &quot;106.7&quot; &quot;368.71&quot; &quot;749.95&quot; &quot;368.71&quot; ...
+##  $ Leucine                   : chr [1:77] &quot;42.1&quot; &quot;77.48&quot; &quot;31.5&quot; &quot;103.54&quot; ...
+##  $ Lysine                    : chr [1:77] &quot;146.94&quot; &quot;284.29&quot; &quot;97.51&quot; &quot;290.03&quot; ...
+##  $ Methylamine               : chr [1:77] &quot;52.46&quot; &quot;23.57&quot; &quot;18.73&quot; &quot;48.91&quot; ...
+##  $ Methylguanidine           : chr [1:77] &quot;9.97&quot; &quot;7.69&quot; &quot;4.66&quot; &quot;141.17&quot; ...
+##  $ N,N-Dimethylglycine       : chr [1:77] &quot;23.34&quot; &quot;87.36&quot; &quot;24.53&quot; &quot;40.04&quot; ...
+##  $ O-Acetylcarnitine         : chr [1:77] &quot;52.98&quot; &quot;50.4&quot; &quot;5.58&quot; &quot;254.68&quot; ...
+##  $ Pantothenate              : chr [1:77] &quot;25.79&quot; &quot;186.79&quot; &quot;145.47&quot; &quot;42.52&quot; ...
+##  $ Pyroglutamate             : chr [1:77] &quot;437.03&quot; &quot;437.03&quot; &quot;713.37&quot; &quot;566.8&quot; ...
+##  $ Pyruvate                  : chr [1:77] &quot;21.12&quot; &quot;36.97&quot; &quot;29.37&quot; &quot;64.07&quot; ...
+##  $ Quinolinate               : chr [1:77] &quot;165.67&quot; &quot;72.97&quot; &quot;192.48&quot; &quot;86.49&quot; ...
+##  $ Serine                    : chr [1:77] &quot;284.29&quot; &quot;391.51&quot; &quot;295.89&quot; &quot;1248.88&quot; ...
+##  $ Succinate                 : chr [1:77] &quot;154.47&quot; &quot;244.69&quot; &quot;142.59&quot; &quot;144.03&quot; ...
+##  $ Sucrose                   : chr [1:77] &quot;45.15&quot; &quot;459.44&quot; &quot;160.77&quot; &quot;111.05&quot; ...
+##  $ Tartrate                  : chr [1:77] &quot;97.51&quot; &quot;32.79&quot; &quot;16.28&quot; &quot;837.15&quot; ...
+##  $ Taurine                   : chr [1:77] &quot;1919.85&quot; &quot;1261.43&quot; &quot;4272.69&quot; &quot;1525.38&quot; ...
+##  $ Threonine                 : chr [1:77] &quot;184.93&quot; &quot;198.34&quot; &quot;109.95&quot; &quot;376.15&quot; ...
+##  $ Trigonelline              : chr [1:77] &quot;943.88&quot; &quot;208.51&quot; &quot;192.48&quot; &quot;992.27&quot; ...
+##  $ Trimethylamine N-oxide    : chr [1:77] &quot;2121.76&quot; &quot;639.06&quot; &quot;1152.86&quot; &quot;1450.99&quot; ...
+##  $ Tryptophan                : chr [1:77] &quot;259.82&quot; &quot;83.1&quot; &quot;82.27&quot; &quot;235.1&quot; ...
+##  $ Tyrosine                  : chr [1:77] &quot;290.03&quot; &quot;167.34&quot; &quot;60.34&quot; &quot;323.76&quot; ...
+##  $ Uracil                    : chr [1:77] &quot;111.05&quot; &quot;46.99&quot; &quot;31.5&quot; &quot;30.57&quot; ...
+##  $ Valine                    : chr [1:77] &quot;86.49&quot; &quot;109.95&quot; &quot;59.15&quot; &quot;102.51&quot; ...
+##  $ Xylose                    : chr [1:77] &quot;72.24&quot; &quot;192.48&quot; &quot;2164.62&quot; &quot;125.21&quot; ...
+##  $ cis-Aconitate             : chr [1:77] &quot;237.46&quot; &quot;333.62&quot; &quot;330.3&quot; &quot;1863.11&quot; ...
+##  $ myo-Inositol              : chr [1:77] &quot;135.64&quot; &quot;376.15&quot; &quot;86.49&quot; &quot;247.15&quot; ...
+##  $ trans-Aconitate           : chr [1:77] &quot;51.94&quot; &quot;217.02&quot; &quot;58.56&quot; &quot;75.94&quot; ...
+##  $ pi-Methylhistidine        : chr [1:77] &quot;157.59&quot; &quot;307.97&quot; &quot;145.47&quot; &quot;249.64&quot; ...
+##  $ tau-Methylhistidine       : chr [1:77] &quot;160.77&quot; &quot;130.32&quot; &quot;83.93&quot; &quot;254.68&quot; ...</code></pre>
+<p>Como hemos visto, en vez de números los valores son una cadena de
+caracteries entonces tenemos que cambiarlo a valores numéricos.
+Aprovecharemos y tambien cambiamos Muscle Loss a tipo factor.</p>
+<pre class="r"><code>human_cachexia$`Muscle loss`&lt;-as.factor(human_cachexia$`Muscle loss`)
+# Para cada columna desde la tercera en el dataset cambiaremos el string a numérico
+for (i in 3:ncol(human_cachexia)) {
+  human_cachexia[, i] &lt;- as.numeric(human_cachexia[[i]])}
+str(human_cachexia)</code></pre>
+<pre><code>## tibble [77 × 65] (S3: tbl_df/tbl/data.frame)
+##  $ Patient ID                : chr [1:77] &quot;PIF_178&quot; &quot;PIF_087&quot; &quot;PIF_090&quot; &quot;NETL_005_V1&quot; ...
+##  $ Muscle loss               : Factor w/ 2 levels &quot;cachexic&quot;,&quot;control&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ 1,6-Anhydro-beta-D-glucose: num [1:77] 40.9 62.2 270.4 154.5 22.2 ...
+##  $ 1-Methylnicotinamide      : num [1:77] 65.4 340.4 64.7 53 73.7 ...
+##  $ 2-Aminobutyrate           : num [1:77] 18.7 24.3 12.2 172.4 15.6 ...
+##  $ 2-Hydroxyisobutyrate      : num [1:77] 26.1 41.7 65.4 74.4 83.9 ...
+##  $ 2-Oxoglutarate            : num [1:77] 71.5 67.4 23.8 1199.9 33.1 ...
+##  $ 3-Aminoisobutyrate        : num [1:77] 1480.3 116.8 14.3 555.6 29.7 ...
+##  $ 3-Hydroxybutyrate         : num [1:77] 56.83 43.82 5.64 175.91 76.71 ...
+##  $ 3-Hydroxyisovalerate      : num [1:77] 10.1 79.8 23.3 25 69.4 ...
+##  $ 3-Indoxylsulfate          : num [1:77] 567 369 665 412 166 ...
+##  $ 4-Hydroxyphenylacetate    : num [1:77] 120.3 432.7 292.9 214.9 97.5 ...
+##  $ Acetate                   : num [1:77] 126.5 212.7 314.2 37.3 407.5 ...
+##  $ Acetone                   : num [1:77] 9.49 11.82 4.44 206.44 44.26 ...
+##  $ Adipate                   : num [1:77] 38.1 327 131.6 144 15 ...
+##  $ Alanine                   : num [1:77] 314 871 464 590 1119 ...
+##  $ Asparagine                : num [1:77] 159.2 157.6 89.1 273.1 42.5 ...
+##  $ Betaine                   : num [1:77] 110 245 117 279 392 ...
+##  $ Carnitine                 : num [1:77] 265.1 120.3 25 200.3 84.8 ...
+##  $ Citrate                   : num [1:77] 3714 2618 863 13630 854 ...
+##  $ Creatine                  : num [1:77] 196.4 212.7 221.4 85.6 105.6 ...
+##  $ Creatinine                : num [1:77] 16482 15835 24588 20952 6768 ...
+##  $ Dimethylamine             : num [1:77] 633 608 735 1064 242 ...
+##  $ Ethanolamine              : num [1:77] 645 488 407 821 365 ...
+##  $ Formate                   : num [1:77] 441 252 250 469 114 ...
+##  $ Fucose                    : num [1:77] 337 198.3 186.8 407.5 26.1 ...
+##  $ Fumarate                  : num [1:77] 7.69 18.92 7.1 96.54 19.69 ...
+##  $ Glucose                   : num [1:77] 395 8691 1353 863 6836 ...
+##  $ Glutamine                 : num [1:77] 871 602 302 1686 433 ...
+##  $ Glycine                   : num [1:77] 2039 1108 620 5064 395 ...
+##  $ Glycolate                 : num [1:77] 685.4 652 141.2 70.8 26.6 ...
+##  $ Guanidoacetate            : num [1:77] 154 110 183 103 53 ...
+##  $ Hippurate                 : num [1:77] 4582 1737 4316 757 1153 ...
+##  $ Histidine                 : num [1:77] 925 846 284 1043 327 ...
+##  $ Hypoxanthine              : num [1:77] 97.5 82.3 114.4 223.6 66.7 ...
+##  $ Isoleucine                : num [1:77] 5.58 8.17 9.3 37.71 40.04 ...
+##  $ Lactate                   : num [1:77] 107 369 750 369 3641 ...
+##  $ Leucine                   : num [1:77] 42.1 77.5 31.5 103.5 101.5 ...
+##  $ Lysine                    : num [1:77] 146.9 284.3 97.5 290 122.7 ...
+##  $ Methylamine               : num [1:77] 52.5 23.6 18.7 48.9 27.9 ...
+##  $ Methylguanidine           : num [1:77] 9.97 7.69 4.66 141.17 5.31 ...
+##  $ N,N-Dimethylglycine       : num [1:77] 23.3 87.4 24.5 40 46.1 ...
+##  $ O-Acetylcarnitine         : num [1:77] 52.98 50.4 5.58 254.68 45.6 ...
+##  $ Pantothenate              : num [1:77] 25.8 186.8 145.5 42.5 74.4 ...
+##  $ Pyroglutamate             : num [1:77] 437 437 713 567 185 ...
+##  $ Pyruvate                  : num [1:77] 21.1 37 29.4 64.1 12.3 ...
+##  $ Quinolinate               : num [1:77] 165.7 73 192.5 86.5 38.1 ...
+##  $ Serine                    : num [1:77] 284 392 296 1249 206 ...
+##  $ Succinate                 : num [1:77] 154.5 244.7 142.6 144 68.7 ...
+##  $ Sucrose                   : num [1:77] 45.1 459.4 160.8 111 75.2 ...
+##  $ Tartrate                  : num [1:77] 97.51 32.79 16.28 837.15 4.53 ...
+##  $ Taurine                   : num [1:77] 1920 1261 4273 1525 469 ...
+##  $ Threonine                 : num [1:77] 184.9 198.3 110 376.1 64.1 ...
+##  $ Trigonelline              : num [1:77] 943.9 208.5 192.5 992.3 86.5 ...
+##  $ Trimethylamine N-oxide    : num [1:77] 2122 639 1153 1451 172 ...
+##  $ Tryptophan                : num [1:77] 259.8 83.1 82.3 235.1 103.5 ...
+##  $ Tyrosine                  : num [1:77] 290 167.3 60.3 323.8 142.6 ...
+##  $ Uracil                    : num [1:77] 111 47 31.5 30.6 44.3 ...
+##  $ Valine                    : num [1:77] 86.5 110 59.1 102.5 160.8 ...
+##  $ Xylose                    : num [1:77] 72.2 192.5 2164.6 125.2 186.8 ...
+##  $ cis-Aconitate             : num [1:77] 237 334 330 1863 101 ...
+##  $ myo-Inositol              : num [1:77] 135.6 376.1 86.5 247.2 750 ...
+##  $ trans-Aconitate           : num [1:77] 51.9 217 58.6 75.9 98.5 ...
+##  $ pi-Methylhistidine        : num [1:77] 157.6 308 145.5 249.6 84.8 ...
+##  $ tau-Methylhistidine       : num [1:77] 160.8 130.3 83.9 254.7 79.8 ...</code></pre>
+<p>Estudiamos el dataset seleccionado.</p>
 <pre class="r"><code>class(human_cachexia)</code></pre>
 <pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
 <pre class="r"><code>colnames(human_cachexia)</code></pre>
@@ -419,943 +559,6 @@ indicado que no hay missing values.</p>
 ## [65] &quot;tau-Methylhistidine&quot;</code></pre>
 <pre class="r"><code>dim(human_cachexia)</code></pre>
 <pre><code>## [1] 77 65</code></pre>
-<pre class="r"><code>is.na(human_cachexia)</code></pre>
-<pre><code>##       Patient ID Muscle loss 1,6-Anhydro-beta-D-glucose 1-Methylnicotinamide
-##  [1,]      FALSE       FALSE                      FALSE                FALSE
-##  [2,]      FALSE       FALSE                      FALSE                FALSE
-##  [3,]      FALSE       FALSE                      FALSE                FALSE
-##  [4,]      FALSE       FALSE                      FALSE                FALSE
-##  [5,]      FALSE       FALSE                      FALSE                FALSE
-##  [6,]      FALSE       FALSE                      FALSE                FALSE
-##  [7,]      FALSE       FALSE                      FALSE                FALSE
-##  [8,]      FALSE       FALSE                      FALSE                FALSE
-##  [9,]      FALSE       FALSE                      FALSE                FALSE
-## [10,]      FALSE       FALSE                      FALSE                FALSE
-## [11,]      FALSE       FALSE                      FALSE                FALSE
-## [12,]      FALSE       FALSE                      FALSE                FALSE
-## [13,]      FALSE       FALSE                      FALSE                FALSE
-## [14,]      FALSE       FALSE                      FALSE                FALSE
-## [15,]      FALSE       FALSE                      FALSE                FALSE
-## [16,]      FALSE       FALSE                      FALSE                FALSE
-## [17,]      FALSE       FALSE                      FALSE                FALSE
-## [18,]      FALSE       FALSE                      FALSE                FALSE
-## [19,]      FALSE       FALSE                      FALSE                FALSE
-## [20,]      FALSE       FALSE                      FALSE                FALSE
-## [21,]      FALSE       FALSE                      FALSE                FALSE
-## [22,]      FALSE       FALSE                      FALSE                FALSE
-## [23,]      FALSE       FALSE                      FALSE                FALSE
-## [24,]      FALSE       FALSE                      FALSE                FALSE
-## [25,]      FALSE       FALSE                      FALSE                FALSE
-## [26,]      FALSE       FALSE                      FALSE                FALSE
-## [27,]      FALSE       FALSE                      FALSE                FALSE
-## [28,]      FALSE       FALSE                      FALSE                FALSE
-## [29,]      FALSE       FALSE                      FALSE                FALSE
-## [30,]      FALSE       FALSE                      FALSE                FALSE
-## [31,]      FALSE       FALSE                      FALSE                FALSE
-## [32,]      FALSE       FALSE                      FALSE                FALSE
-## [33,]      FALSE       FALSE                      FALSE                FALSE
-## [34,]      FALSE       FALSE                      FALSE                FALSE
-## [35,]      FALSE       FALSE                      FALSE                FALSE
-## [36,]      FALSE       FALSE                      FALSE                FALSE
-## [37,]      FALSE       FALSE                      FALSE                FALSE
-## [38,]      FALSE       FALSE                      FALSE                FALSE
-## [39,]      FALSE       FALSE                      FALSE                FALSE
-## [40,]      FALSE       FALSE                      FALSE                FALSE
-## [41,]      FALSE       FALSE                      FALSE                FALSE
-## [42,]      FALSE       FALSE                      FALSE                FALSE
-## [43,]      FALSE       FALSE                      FALSE                FALSE
-## [44,]      FALSE       FALSE                      FALSE                FALSE
-## [45,]      FALSE       FALSE                      FALSE                FALSE
-## [46,]      FALSE       FALSE                      FALSE                FALSE
-## [47,]      FALSE       FALSE                      FALSE                FALSE
-## [48,]      FALSE       FALSE                      FALSE                FALSE
-## [49,]      FALSE       FALSE                      FALSE                FALSE
-## [50,]      FALSE       FALSE                      FALSE                FALSE
-## [51,]      FALSE       FALSE                      FALSE                FALSE
-## [52,]      FALSE       FALSE                      FALSE                FALSE
-## [53,]      FALSE       FALSE                      FALSE                FALSE
-## [54,]      FALSE       FALSE                      FALSE                FALSE
-## [55,]      FALSE       FALSE                      FALSE                FALSE
-## [56,]      FALSE       FALSE                      FALSE                FALSE
-## [57,]      FALSE       FALSE                      FALSE                FALSE
-## [58,]      FALSE       FALSE                      FALSE                FALSE
-## [59,]      FALSE       FALSE                      FALSE                FALSE
-## [60,]      FALSE       FALSE                      FALSE                FALSE
-## [61,]      FALSE       FALSE                      FALSE                FALSE
-## [62,]      FALSE       FALSE                      FALSE                FALSE
-## [63,]      FALSE       FALSE                      FALSE                FALSE
-## [64,]      FALSE       FALSE                      FALSE                FALSE
-## [65,]      FALSE       FALSE                      FALSE                FALSE
-## [66,]      FALSE       FALSE                      FALSE                FALSE
-## [67,]      FALSE       FALSE                      FALSE                FALSE
-## [68,]      FALSE       FALSE                      FALSE                FALSE
-## [69,]      FALSE       FALSE                      FALSE                FALSE
-## [70,]      FALSE       FALSE                      FALSE                FALSE
-## [71,]      FALSE       FALSE                      FALSE                FALSE
-## [72,]      FALSE       FALSE                      FALSE                FALSE
-## [73,]      FALSE       FALSE                      FALSE                FALSE
-## [74,]      FALSE       FALSE                      FALSE                FALSE
-## [75,]      FALSE       FALSE                      FALSE                FALSE
-## [76,]      FALSE       FALSE                      FALSE                FALSE
-## [77,]      FALSE       FALSE                      FALSE                FALSE
-##       2-Aminobutyrate 2-Hydroxyisobutyrate 2-Oxoglutarate 3-Aminoisobutyrate
-##  [1,]           FALSE                FALSE          FALSE              FALSE
-##  [2,]           FALSE                FALSE          FALSE              FALSE
-##  [3,]           FALSE                FALSE          FALSE              FALSE
-##  [4,]           FALSE                FALSE          FALSE              FALSE
-##  [5,]           FALSE                FALSE          FALSE              FALSE
-##  [6,]           FALSE                FALSE          FALSE              FALSE
-##  [7,]           FALSE                FALSE          FALSE              FALSE
-##  [8,]           FALSE                FALSE          FALSE              FALSE
-##  [9,]           FALSE                FALSE          FALSE              FALSE
-## [10,]           FALSE                FALSE          FALSE              FALSE
-## [11,]           FALSE                FALSE          FALSE              FALSE
-## [12,]           FALSE                FALSE          FALSE              FALSE
-## [13,]           FALSE                FALSE          FALSE              FALSE
-## [14,]           FALSE                FALSE          FALSE              FALSE
-## [15,]           FALSE                FALSE          FALSE              FALSE
-## [16,]           FALSE                FALSE          FALSE              FALSE
-## [17,]           FALSE                FALSE          FALSE              FALSE
-## [18,]           FALSE                FALSE          FALSE              FALSE
-## [19,]           FALSE                FALSE          FALSE              FALSE
-## [20,]           FALSE                FALSE          FALSE              FALSE
-## [21,]           FALSE                FALSE          FALSE              FALSE
-## [22,]           FALSE                FALSE          FALSE              FALSE
-## [23,]           FALSE                FALSE          FALSE              FALSE
-## [24,]           FALSE                FALSE          FALSE              FALSE
-## [25,]           FALSE                FALSE          FALSE              FALSE
-## [26,]           FALSE                FALSE          FALSE              FALSE
-## [27,]           FALSE                FALSE          FALSE              FALSE
-## [28,]           FALSE                FALSE          FALSE              FALSE
-## [29,]           FALSE                FALSE          FALSE              FALSE
-## [30,]           FALSE                FALSE          FALSE              FALSE
-## [31,]           FALSE                FALSE          FALSE              FALSE
-## [32,]           FALSE                FALSE          FALSE              FALSE
-## [33,]           FALSE                FALSE          FALSE              FALSE
-## [34,]           FALSE                FALSE          FALSE              FALSE
-## [35,]           FALSE                FALSE          FALSE              FALSE
-## [36,]           FALSE                FALSE          FALSE              FALSE
-## [37,]           FALSE                FALSE          FALSE              FALSE
-## [38,]           FALSE                FALSE          FALSE              FALSE
-## [39,]           FALSE                FALSE          FALSE              FALSE
-## [40,]           FALSE                FALSE          FALSE              FALSE
-## [41,]           FALSE                FALSE          FALSE              FALSE
-## [42,]           FALSE                FALSE          FALSE              FALSE
-## [43,]           FALSE                FALSE          FALSE              FALSE
-## [44,]           FALSE                FALSE          FALSE              FALSE
-## [45,]           FALSE                FALSE          FALSE              FALSE
-## [46,]           FALSE                FALSE          FALSE              FALSE
-## [47,]           FALSE                FALSE          FALSE              FALSE
-## [48,]           FALSE                FALSE          FALSE              FALSE
-## [49,]           FALSE                FALSE          FALSE              FALSE
-## [50,]           FALSE                FALSE          FALSE              FALSE
-## [51,]           FALSE                FALSE          FALSE              FALSE
-## [52,]           FALSE                FALSE          FALSE              FALSE
-## [53,]           FALSE                FALSE          FALSE              FALSE
-## [54,]           FALSE                FALSE          FALSE              FALSE
-## [55,]           FALSE                FALSE          FALSE              FALSE
-## [56,]           FALSE                FALSE          FALSE              FALSE
-## [57,]           FALSE                FALSE          FALSE              FALSE
-## [58,]           FALSE                FALSE          FALSE              FALSE
-## [59,]           FALSE                FALSE          FALSE              FALSE
-## [60,]           FALSE                FALSE          FALSE              FALSE
-## [61,]           FALSE                FALSE          FALSE              FALSE
-## [62,]           FALSE                FALSE          FALSE              FALSE
-## [63,]           FALSE                FALSE          FALSE              FALSE
-## [64,]           FALSE                FALSE          FALSE              FALSE
-## [65,]           FALSE                FALSE          FALSE              FALSE
-## [66,]           FALSE                FALSE          FALSE              FALSE
-## [67,]           FALSE                FALSE          FALSE              FALSE
-## [68,]           FALSE                FALSE          FALSE              FALSE
-## [69,]           FALSE                FALSE          FALSE              FALSE
-## [70,]           FALSE                FALSE          FALSE              FALSE
-## [71,]           FALSE                FALSE          FALSE              FALSE
-## [72,]           FALSE                FALSE          FALSE              FALSE
-## [73,]           FALSE                FALSE          FALSE              FALSE
-## [74,]           FALSE                FALSE          FALSE              FALSE
-## [75,]           FALSE                FALSE          FALSE              FALSE
-## [76,]           FALSE                FALSE          FALSE              FALSE
-## [77,]           FALSE                FALSE          FALSE              FALSE
-##       3-Hydroxybutyrate 3-Hydroxyisovalerate 3-Indoxylsulfate
-##  [1,]             FALSE                FALSE            FALSE
-##  [2,]             FALSE                FALSE            FALSE
-##  [3,]             FALSE                FALSE            FALSE
-##  [4,]             FALSE                FALSE            FALSE
-##  [5,]             FALSE                FALSE            FALSE
-##  [6,]             FALSE                FALSE            FALSE
-##  [7,]             FALSE                FALSE            FALSE
-##  [8,]             FALSE                FALSE            FALSE
-##  [9,]             FALSE                FALSE            FALSE
-## [10,]             FALSE                FALSE            FALSE
-## [11,]             FALSE                FALSE            FALSE
-## [12,]             FALSE                FALSE            FALSE
-## [13,]             FALSE                FALSE            FALSE
-## [14,]             FALSE                FALSE            FALSE
-## [15,]             FALSE                FALSE            FALSE
-## [16,]             FALSE                FALSE            FALSE
-## [17,]             FALSE                FALSE            FALSE
-## [18,]             FALSE                FALSE            FALSE
-## [19,]             FALSE                FALSE            FALSE
-## [20,]             FALSE                FALSE            FALSE
-## [21,]             FALSE                FALSE            FALSE
-## [22,]             FALSE                FALSE            FALSE
-## [23,]             FALSE                FALSE            FALSE
-## [24,]             FALSE                FALSE            FALSE
-## [25,]             FALSE                FALSE            FALSE
-## [26,]             FALSE                FALSE            FALSE
-## [27,]             FALSE                FALSE            FALSE
-## [28,]             FALSE                FALSE            FALSE
-## [29,]             FALSE                FALSE            FALSE
-## [30,]             FALSE                FALSE            FALSE
-## [31,]             FALSE                FALSE            FALSE
-## [32,]             FALSE                FALSE            FALSE
-## [33,]             FALSE                FALSE            FALSE
-## [34,]             FALSE                FALSE            FALSE
-## [35,]             FALSE                FALSE            FALSE
-## [36,]             FALSE                FALSE            FALSE
-## [37,]             FALSE                FALSE            FALSE
-## [38,]             FALSE                FALSE            FALSE
-## [39,]             FALSE                FALSE            FALSE
-## [40,]             FALSE                FALSE            FALSE
-## [41,]             FALSE                FALSE            FALSE
-## [42,]             FALSE                FALSE            FALSE
-## [43,]             FALSE                FALSE            FALSE
-## [44,]             FALSE                FALSE            FALSE
-## [45,]             FALSE                FALSE            FALSE
-## [46,]             FALSE                FALSE            FALSE
-## [47,]             FALSE                FALSE            FALSE
-## [48,]             FALSE                FALSE            FALSE
-## [49,]             FALSE                FALSE            FALSE
-## [50,]             FALSE                FALSE            FALSE
-## [51,]             FALSE                FALSE            FALSE
-## [52,]             FALSE                FALSE            FALSE
-## [53,]             FALSE                FALSE            FALSE
-## [54,]             FALSE                FALSE            FALSE
-## [55,]             FALSE                FALSE            FALSE
-## [56,]             FALSE                FALSE            FALSE
-## [57,]             FALSE                FALSE            FALSE
-## [58,]             FALSE                FALSE            FALSE
-## [59,]             FALSE                FALSE            FALSE
-## [60,]             FALSE                FALSE            FALSE
-## [61,]             FALSE                FALSE            FALSE
-## [62,]             FALSE                FALSE            FALSE
-## [63,]             FALSE                FALSE            FALSE
-## [64,]             FALSE                FALSE            FALSE
-## [65,]             FALSE                FALSE            FALSE
-## [66,]             FALSE                FALSE            FALSE
-## [67,]             FALSE                FALSE            FALSE
-## [68,]             FALSE                FALSE            FALSE
-## [69,]             FALSE                FALSE            FALSE
-## [70,]             FALSE                FALSE            FALSE
-## [71,]             FALSE                FALSE            FALSE
-## [72,]             FALSE                FALSE            FALSE
-## [73,]             FALSE                FALSE            FALSE
-## [74,]             FALSE                FALSE            FALSE
-## [75,]             FALSE                FALSE            FALSE
-## [76,]             FALSE                FALSE            FALSE
-## [77,]             FALSE                FALSE            FALSE
-##       4-Hydroxyphenylacetate Acetate Acetone Adipate Alanine Asparagine Betaine
-##  [1,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [2,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [3,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [4,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [5,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [6,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [7,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [8,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##  [9,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [10,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [11,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [12,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [13,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [14,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [15,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [16,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [17,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [18,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [19,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [20,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [21,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [22,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [23,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [24,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [25,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [26,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [27,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [28,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [29,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [30,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [31,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [32,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [33,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [34,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [35,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [36,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [37,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [38,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [39,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [40,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [41,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [42,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [43,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [44,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [45,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [46,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [47,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [48,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [49,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [50,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [51,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [52,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [53,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [54,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [55,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [56,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [57,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [58,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [59,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [60,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [61,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [62,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [63,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [64,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [65,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [66,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [67,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [68,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [69,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [70,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [71,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [72,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [73,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [74,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [75,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [76,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-## [77,]                  FALSE   FALSE   FALSE   FALSE   FALSE      FALSE   FALSE
-##       Carnitine Citrate Creatine Creatinine Dimethylamine Ethanolamine Formate
-##  [1,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [2,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [3,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [4,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [5,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [6,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [7,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [8,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##  [9,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [10,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [11,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [12,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [13,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [14,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [15,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [16,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [17,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [18,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [19,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [20,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [21,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [22,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [23,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [24,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [25,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [26,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [27,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [28,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [29,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [30,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [31,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [32,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [33,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [34,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [35,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [36,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [37,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [38,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [39,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [40,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [41,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [42,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [43,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [44,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [45,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [46,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [47,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [48,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [49,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [50,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [51,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [52,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [53,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [54,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [55,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [56,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [57,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [58,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [59,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [60,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [61,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [62,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [63,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [64,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [65,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [66,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [67,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [68,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [69,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [70,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [71,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [72,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [73,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [74,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [75,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [76,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-## [77,]     FALSE   FALSE    FALSE      FALSE         FALSE        FALSE   FALSE
-##       Fucose Fumarate Glucose Glutamine Glycine Glycolate Guanidoacetate
-##  [1,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [2,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [3,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [4,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [5,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [6,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [7,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [8,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##  [9,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [10,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [11,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [12,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [13,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [14,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [15,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [16,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [17,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [18,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [19,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [20,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [21,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [22,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [23,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [24,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [25,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [26,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [27,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [28,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [29,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [30,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [31,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [32,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [33,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [34,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [35,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [36,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [37,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [38,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [39,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [40,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [41,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [42,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [43,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [44,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [45,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [46,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [47,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [48,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [49,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [50,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [51,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [52,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [53,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [54,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [55,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [56,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [57,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [58,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [59,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [60,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [61,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [62,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [63,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [64,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [65,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [66,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [67,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [68,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [69,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [70,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [71,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [72,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [73,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [74,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [75,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [76,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-## [77,]  FALSE    FALSE   FALSE     FALSE   FALSE     FALSE          FALSE
-##       Hippurate Histidine Hypoxanthine Isoleucine Lactate Leucine Lysine
-##  [1,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [2,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [3,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [4,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [5,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [6,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [7,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [8,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##  [9,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [10,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [11,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [12,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [13,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [14,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [15,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [16,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [17,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [18,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [19,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [20,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [21,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [22,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [23,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [24,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [25,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [26,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [27,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [28,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [29,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [30,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [31,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [32,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [33,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [34,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [35,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [36,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [37,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [38,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [39,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [40,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [41,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [42,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [43,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [44,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [45,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [46,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [47,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [48,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [49,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [50,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [51,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [52,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [53,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [54,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [55,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [56,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [57,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [58,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [59,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [60,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [61,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [62,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [63,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [64,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [65,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [66,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [67,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [68,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [69,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [70,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [71,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [72,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [73,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [74,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [75,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [76,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-## [77,]     FALSE     FALSE        FALSE      FALSE   FALSE   FALSE  FALSE
-##       Methylamine Methylguanidine N,N-Dimethylglycine O-Acetylcarnitine
-##  [1,]       FALSE           FALSE               FALSE             FALSE
-##  [2,]       FALSE           FALSE               FALSE             FALSE
-##  [3,]       FALSE           FALSE               FALSE             FALSE
-##  [4,]       FALSE           FALSE               FALSE             FALSE
-##  [5,]       FALSE           FALSE               FALSE             FALSE
-##  [6,]       FALSE           FALSE               FALSE             FALSE
-##  [7,]       FALSE           FALSE               FALSE             FALSE
-##  [8,]       FALSE           FALSE               FALSE             FALSE
-##  [9,]       FALSE           FALSE               FALSE             FALSE
-## [10,]       FALSE           FALSE               FALSE             FALSE
-## [11,]       FALSE           FALSE               FALSE             FALSE
-## [12,]       FALSE           FALSE               FALSE             FALSE
-## [13,]       FALSE           FALSE               FALSE             FALSE
-## [14,]       FALSE           FALSE               FALSE             FALSE
-## [15,]       FALSE           FALSE               FALSE             FALSE
-## [16,]       FALSE           FALSE               FALSE             FALSE
-## [17,]       FALSE           FALSE               FALSE             FALSE
-## [18,]       FALSE           FALSE               FALSE             FALSE
-## [19,]       FALSE           FALSE               FALSE             FALSE
-## [20,]       FALSE           FALSE               FALSE             FALSE
-## [21,]       FALSE           FALSE               FALSE             FALSE
-## [22,]       FALSE           FALSE               FALSE             FALSE
-## [23,]       FALSE           FALSE               FALSE             FALSE
-## [24,]       FALSE           FALSE               FALSE             FALSE
-## [25,]       FALSE           FALSE               FALSE             FALSE
-## [26,]       FALSE           FALSE               FALSE             FALSE
-## [27,]       FALSE           FALSE               FALSE             FALSE
-## [28,]       FALSE           FALSE               FALSE             FALSE
-## [29,]       FALSE           FALSE               FALSE             FALSE
-## [30,]       FALSE           FALSE               FALSE             FALSE
-## [31,]       FALSE           FALSE               FALSE             FALSE
-## [32,]       FALSE           FALSE               FALSE             FALSE
-## [33,]       FALSE           FALSE               FALSE             FALSE
-## [34,]       FALSE           FALSE               FALSE             FALSE
-## [35,]       FALSE           FALSE               FALSE             FALSE
-## [36,]       FALSE           FALSE               FALSE             FALSE
-## [37,]       FALSE           FALSE               FALSE             FALSE
-## [38,]       FALSE           FALSE               FALSE             FALSE
-## [39,]       FALSE           FALSE               FALSE             FALSE
-## [40,]       FALSE           FALSE               FALSE             FALSE
-## [41,]       FALSE           FALSE               FALSE             FALSE
-## [42,]       FALSE           FALSE               FALSE             FALSE
-## [43,]       FALSE           FALSE               FALSE             FALSE
-## [44,]       FALSE           FALSE               FALSE             FALSE
-## [45,]       FALSE           FALSE               FALSE             FALSE
-## [46,]       FALSE           FALSE               FALSE             FALSE
-## [47,]       FALSE           FALSE               FALSE             FALSE
-## [48,]       FALSE           FALSE               FALSE             FALSE
-## [49,]       FALSE           FALSE               FALSE             FALSE
-## [50,]       FALSE           FALSE               FALSE             FALSE
-## [51,]       FALSE           FALSE               FALSE             FALSE
-## [52,]       FALSE           FALSE               FALSE             FALSE
-## [53,]       FALSE           FALSE               FALSE             FALSE
-## [54,]       FALSE           FALSE               FALSE             FALSE
-## [55,]       FALSE           FALSE               FALSE             FALSE
-## [56,]       FALSE           FALSE               FALSE             FALSE
-## [57,]       FALSE           FALSE               FALSE             FALSE
-## [58,]       FALSE           FALSE               FALSE             FALSE
-## [59,]       FALSE           FALSE               FALSE             FALSE
-## [60,]       FALSE           FALSE               FALSE             FALSE
-## [61,]       FALSE           FALSE               FALSE             FALSE
-## [62,]       FALSE           FALSE               FALSE             FALSE
-## [63,]       FALSE           FALSE               FALSE             FALSE
-## [64,]       FALSE           FALSE               FALSE             FALSE
-## [65,]       FALSE           FALSE               FALSE             FALSE
-## [66,]       FALSE           FALSE               FALSE             FALSE
-## [67,]       FALSE           FALSE               FALSE             FALSE
-## [68,]       FALSE           FALSE               FALSE             FALSE
-## [69,]       FALSE           FALSE               FALSE             FALSE
-## [70,]       FALSE           FALSE               FALSE             FALSE
-## [71,]       FALSE           FALSE               FALSE             FALSE
-## [72,]       FALSE           FALSE               FALSE             FALSE
-## [73,]       FALSE           FALSE               FALSE             FALSE
-## [74,]       FALSE           FALSE               FALSE             FALSE
-## [75,]       FALSE           FALSE               FALSE             FALSE
-## [76,]       FALSE           FALSE               FALSE             FALSE
-## [77,]       FALSE           FALSE               FALSE             FALSE
-##       Pantothenate Pyroglutamate Pyruvate Quinolinate Serine Succinate Sucrose
-##  [1,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [2,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [3,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [4,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [5,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [6,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [7,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [8,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##  [9,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [10,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [11,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [12,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [13,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [14,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [15,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [16,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [17,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [18,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [19,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [20,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [21,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [22,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [23,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [24,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [25,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [26,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [27,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [28,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [29,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [30,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [31,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [32,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [33,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [34,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [35,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [36,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [37,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [38,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [39,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [40,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [41,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [42,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [43,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [44,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [45,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [46,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [47,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [48,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [49,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [50,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [51,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [52,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [53,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [54,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [55,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [56,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [57,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [58,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [59,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [60,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [61,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [62,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [63,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [64,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [65,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [66,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [67,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [68,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [69,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [70,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [71,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [72,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [73,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [74,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [75,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [76,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-## [77,]        FALSE         FALSE    FALSE       FALSE  FALSE     FALSE   FALSE
-##       Tartrate Taurine Threonine Trigonelline Trimethylamine N-oxide Tryptophan
-##  [1,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [2,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [3,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [4,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [5,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [6,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [7,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [8,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##  [9,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [10,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [11,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [12,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [13,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [14,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [15,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [16,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [17,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [18,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [19,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [20,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [21,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [22,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [23,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [24,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [25,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [26,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [27,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [28,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [29,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [30,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [31,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [32,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [33,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [34,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [35,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [36,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [37,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [38,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [39,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [40,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [41,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [42,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [43,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [44,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [45,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [46,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [47,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [48,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [49,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [50,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [51,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [52,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [53,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [54,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [55,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [56,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [57,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [58,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [59,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [60,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [61,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [62,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [63,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [64,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [65,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [66,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [67,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [68,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [69,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [70,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [71,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [72,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [73,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [74,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [75,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [76,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-## [77,]    FALSE   FALSE     FALSE        FALSE                  FALSE      FALSE
-##       Tyrosine Uracil Valine Xylose cis-Aconitate myo-Inositol trans-Aconitate
-##  [1,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [2,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [3,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [4,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [5,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [6,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [7,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [8,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##  [9,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [10,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [11,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [12,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [13,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [14,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [15,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [16,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [17,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [18,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [19,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [20,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [21,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [22,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [23,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [24,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [25,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [26,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [27,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [28,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [29,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [30,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [31,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [32,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [33,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [34,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [35,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [36,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [37,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [38,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [39,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [40,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [41,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [42,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [43,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [44,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [45,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [46,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [47,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [48,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [49,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [50,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [51,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [52,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [53,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [54,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [55,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [56,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [57,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [58,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [59,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [60,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [61,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [62,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [63,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [64,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [65,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [66,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [67,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [68,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [69,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [70,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [71,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [72,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [73,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [74,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [75,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [76,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-## [77,]    FALSE  FALSE  FALSE  FALSE         FALSE        FALSE           FALSE
-##       pi-Methylhistidine tau-Methylhistidine
-##  [1,]              FALSE               FALSE
-##  [2,]              FALSE               FALSE
-##  [3,]              FALSE               FALSE
-##  [4,]              FALSE               FALSE
-##  [5,]              FALSE               FALSE
-##  [6,]              FALSE               FALSE
-##  [7,]              FALSE               FALSE
-##  [8,]              FALSE               FALSE
-##  [9,]              FALSE               FALSE
-## [10,]              FALSE               FALSE
-## [11,]              FALSE               FALSE
-## [12,]              FALSE               FALSE
-## [13,]              FALSE               FALSE
-## [14,]              FALSE               FALSE
-## [15,]              FALSE               FALSE
-## [16,]              FALSE               FALSE
-## [17,]              FALSE               FALSE
-## [18,]              FALSE               FALSE
-## [19,]              FALSE               FALSE
-## [20,]              FALSE               FALSE
-## [21,]              FALSE               FALSE
-## [22,]              FALSE               FALSE
-## [23,]              FALSE               FALSE
-## [24,]              FALSE               FALSE
-## [25,]              FALSE               FALSE
-## [26,]              FALSE               FALSE
-## [27,]              FALSE               FALSE
-## [28,]              FALSE               FALSE
-## [29,]              FALSE               FALSE
-## [30,]              FALSE               FALSE
-## [31,]              FALSE               FALSE
-## [32,]              FALSE               FALSE
-## [33,]              FALSE               FALSE
-## [34,]              FALSE               FALSE
-## [35,]              FALSE               FALSE
-## [36,]              FALSE               FALSE
-## [37,]              FALSE               FALSE
-## [38,]              FALSE               FALSE
-## [39,]              FALSE               FALSE
-## [40,]              FALSE               FALSE
-## [41,]              FALSE               FALSE
-## [42,]              FALSE               FALSE
-## [43,]              FALSE               FALSE
-## [44,]              FALSE               FALSE
-## [45,]              FALSE               FALSE
-## [46,]              FALSE               FALSE
-## [47,]              FALSE               FALSE
-## [48,]              FALSE               FALSE
-## [49,]              FALSE               FALSE
-## [50,]              FALSE               FALSE
-## [51,]              FALSE               FALSE
-## [52,]              FALSE               FALSE
-## [53,]              FALSE               FALSE
-## [54,]              FALSE               FALSE
-## [55,]              FALSE               FALSE
-## [56,]              FALSE               FALSE
-## [57,]              FALSE               FALSE
-## [58,]              FALSE               FALSE
-## [59,]              FALSE               FALSE
-## [60,]              FALSE               FALSE
-## [61,]              FALSE               FALSE
-## [62,]              FALSE               FALSE
-## [63,]              FALSE               FALSE
-## [64,]              FALSE               FALSE
-## [65,]              FALSE               FALSE
-## [66,]              FALSE               FALSE
-## [67,]              FALSE               FALSE
-## [68,]              FALSE               FALSE
-## [69,]              FALSE               FALSE
-## [70,]              FALSE               FALSE
-## [71,]              FALSE               FALSE
-## [72,]              FALSE               FALSE
-## [73,]              FALSE               FALSE
-## [74,]              FALSE               FALSE
-## [75,]              FALSE               FALSE
-## [76,]              FALSE               FALSE
-## [77,]              FALSE               FALSE</code></pre>
 <p>Encontramos que nuestro dataset es un dataframe con 77 muestras y
 presenta 65 columnas siendo la primera columna el ID de la muestra del
 paciente y la segunda si ha habido pérdida de masa muscular y grasa
@@ -1363,8 +566,7 @@ paciente y la segunda si ha habido pérdida de masa muscular y grasa
 diversos metabolitos.</p>
 <p>Para tener más información acerca de nuestro estudio determinamos el
 número de pacientes que presenta caquexia y los pacientes control.</p>
-<pre class="r"><code>human_cachexia$`Muscle loss`&lt;-as.factor(human_cachexia$`Muscle loss`)
-summary(human_cachexia$`Muscle loss`)</code></pre>
+<pre class="r"><code>summary(human_cachexia$`Muscle loss`)</code></pre>
 <pre><code>## cachexic  control 
 ##       47       30</code></pre>
 <p>De los 77 pacientes tenemos 30 control y 47 con caquexia.</p>
@@ -1376,9 +578,8 @@ BiocManager::install(version = &quot;3.20&quot;)</code></pre>
 <pre><code>## Installation paths not writeable, unable to update packages
 ##   path: C:/Program Files/R/R-4.4.2/library
 ##   packages:
-##     class, cluster, foreign, KernSmooth, MASS, Matrix, nlme, nnet, rpart,
-##     spatial, survival</code></pre>
-<pre><code>## Old packages: &#39;readxl&#39;</code></pre>
+##     class, cluster, foreign, KernSmooth, lattice, MASS, Matrix, mgcv, nlme,
+##     nnet, rpart, spatial, survival</code></pre>
 <pre class="r"><code>library(SummarizedExperiment)</code></pre>
 <pre><code>## Cargando paquete requerido: MatrixGenerics</code></pre>
 <pre><code>## Cargando paquete requerido: matrixStats</code></pre>
@@ -1520,11 +721,11 @@ objetos como por ejemplo subconjuntos:</p>
 <pre class="r"><code>control &lt;-SE[rowData(SE)$Perdida_muscular == &quot;control,&quot;] # Solo mostramos los individuos control
 assay(SE)[1:5,1:3]</code></pre>
 <pre><code>##             1,6-Anhydro-beta-D-glucose 1-Methylnicotinamide 2-Aminobutyrate
-## PIF_178     &quot;40.85&quot;                    &quot;65.37&quot;              &quot;18.73&quot;        
-## PIF_087     &quot;62.18&quot;                    &quot;340.36&quot;             &quot;24.29&quot;        
-## PIF_090     &quot;270.43&quot;                   &quot;64.72&quot;              &quot;12.18&quot;        
-## NETL_005_V1 &quot;154.47&quot;                   &quot;52.98&quot;              &quot;172.43&quot;       
-## PIF_115     &quot;22.2&quot;                     &quot;73.7&quot;               &quot;15.64&quot;</code></pre>
+## PIF_178                          40.85                65.37           18.73
+## PIF_087                          62.18               340.36           24.29
+## PIF_090                         270.43                64.72           12.18
+## NETL_005_V1                     154.47                52.98          172.43
+## PIF_115                          22.20                73.70           15.64</code></pre>
 <p>Finalmente guardamos nuestro objeto SummarizedExperiment para poder
 subirlo a GitHub.</p>
 <pre class="r"><code>save(SE, file = &quot;SummarizedExperiment_PEC1.Rda&quot;)</code></pre>
